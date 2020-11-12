@@ -52,6 +52,7 @@ bool DoDetection()
     CONTEXT ctx{};
     ctx.ContextFlags = CONTEXT_DEBUG_REGISTERS;
     GetThreadContext(GetCurrentThread(), &ctx);
+    ctx.Dr0 = (size_t)Glitch + 11;
     ctx.Dr7 = 1;
     SetThreadContext(GetCurrentThread(), &ctx);
     __try
